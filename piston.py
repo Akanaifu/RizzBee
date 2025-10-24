@@ -2,7 +2,8 @@ import RPi.GPIO as GPIO
 import time
 
 # --- Configuration ---
-SOLENOID_PINS = [26, 19, 13, 6, 5]  # GPIO utilisés (modifier la liste si nécessaire)
+# SOLENOID_PINS = [26, 19, 13, 6, 5]  # GPIO utilisés (modifier la liste si nécessaire)
+SOLENOID_PINS = [26, 19, 13]  # GPIO utilisés (modifier la liste si nécessaire)
 
 ACTIVATION_DURATION = 1  # Durée d'activation en secondes
 
