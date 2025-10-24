@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-
+import time
 
 # --- Configuration ---
 SOLENOID_PIN = 26  # GPIO utilisé
