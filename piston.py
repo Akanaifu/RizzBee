@@ -1,11 +1,9 @@
 import RPi.GPIO as GPIO
-import time
 
 
 # --- Configuration ---
-SOLENOID_PIN = 21  # GPIO utilisé
-ACTIVATION_TIME = "14:30:00"  # Heure d'activation (HH:MM:SS)
-ACTIVATION_DURATION = 2  # Durée d'activation en secondes
+SOLENOID_PIN = 26  # GPIO utilisé
+ACTIVATION_DURATION = 1  # Durée d'activation en secondes
 
 # --- Initialisation ---
 GPIO.setmode(GPIO.BCM)
