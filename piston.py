@@ -11,8 +11,6 @@ GPIO.setup(SOLENOID_PIN, GPIO.OUT)
 GPIO.output(SOLENOID_PIN, GPIO.LOW)
 
 try:
-    print(f"Attente de l'heure d'activation ({ACTIVATION_TIME})...")
-
     while True:
         print("Activation du solénoïde...")
         GPIO.output(SOLENOID_PIN, GPIO.HIGH)
