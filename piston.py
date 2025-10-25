@@ -1,5 +1,5 @@
-import RPi.GPIO as GPIO
 import time
+import RPi.GPIO as GPIO
 
 # --- Configuration ---
 # SOLENOID_PINS = [26, 19, 13, 6, 5]  # GPIO utilisés (modifier la liste si nécessaire)
@@ -30,4 +30,3 @@ except KeyboardInterrupt:
 
 finally:
     GPIO.cleanup()
-
