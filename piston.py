@@ -1,32 +1,39 @@
+from machine import Pin
 import time
-import RPi.GPIO as GPIO
 
 # --- Configuration ---
-# SOLENOID_PINS = [26, 19, 13, 6, 5]  # GPIO utilisés (modifier la liste si nécessaire)
-SOLENOID_PINS = [26, 19, 13]  # GPIO utilisés (modifier la liste si nécessaire)
-
-ACTIVATION_DURATION = 0.25  # Durée d'activation en secondes
+# Tout fonctionnels
+ACTIVATION_DURATION = 0.375  # Durée d'activation 
 
 # --- Initialisation ---
-GPIO.setmode(GPIO.BCM)
-for pin in SOLENOID_PINS:
-    GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, GPIO.LOW)
-
+solenoids = [
+  Pin(2, Pin.OUT), # bread verte
+  Pin(4, Pin.OUT), # bread bleue
+  Pin(5, Pin.OUT), # grande bread far away
+  Pin(6, Pin.OUT), # grande bread coté alim
+  Pin(7, Pin.OUT), # bread rouge
+]
 
 # --- Activation des solénoïdes ---
 try:
     while True:
-        # Activer tous les solénoïdes en même temps
-        for pin in SOLENOID_PINS:
-            GPIO.output(pin, GPIO.HIGH)
-            time.sleep(ACTIVATION_DURATION)
-            GPIO.output(pin, GPIO.LOW)
+        # Activer les solénoïdes l’un après l’autre
+        for solenoid in solenoids:
+            solenoid.value(1)               # Activer
+            print(f"activation solenoid {solenoid}")
+            time.sleep(ACTIVATION_DURATION) # Attendre
+            solenoid.value(0)               # Désactiver
+            
 
-        break
+        break  
 
 except KeyboardInterrupt:
     print("Arrêt par l'utilisateur.")
 
 finally:
-    GPIO.cleanup()
+    # Remet toutes les sorties à 0 pour sécurité
+    for solenoid in solenoids:
+        solenoid.value(0)
+
+
+
