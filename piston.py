@@ -21,14 +21,12 @@ try:
         # Activer tous les solénoïdes en même temps
         for pin in SOLENOID_PINS:
             GPIO.output(pin, GPIO.HIGH)
-
-        time.sleep(ACTIVATION_DURATION)
-
-        # Désactiver tous les solénoïdes
-        for pin in SOLENOID_PINS:
+            print(f"Solénoïde sur GPIO {pin} activé.")
+            time.sleep(ACTIVATION_DURATION)
             GPIO.output(pin, GPIO.LOW)
+            print(f"Solénoïde sur GPIO {pin} désactivé.")
 
-        print("Solénoïdes désactivés.")
+        print("Tous les solénoïdes désactivés.")
         break
 
 except KeyboardInterrupt:
