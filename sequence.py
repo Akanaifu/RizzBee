@@ -62,19 +62,38 @@ def play_sequence(sequence):
         play_note(note, duration)
 
 
-# --- Boucle principale ---
-try:
-    print("Piano automatique en marche. Ctrl+C pour arrêter.")
-    while True:
-        seq = random.choice(sequences)  # Choisit une séquence au hasard
-        play_sequence(seq)
-        time.sleep(PAUSE_BETWEEN_SEQUENCES)
+def full_sequence_random():
+    """
+    crée et joue une séquence complète ou tout est aléatoire.
+    Le nombre de note jouée est aussi aléatoire
+    """
+    sequence = []
+    num_notes = random.randint(15, 30)  # Nombre aléatoire de notes entre 15 et 30
+    note_names = list(solenoids.keys())
 
-except KeyboardInterrupt:
-    print("\nArrêt par l'utilisateur.")
+    for _ in range(num_notes):
+        note = random.choice(note_names)
+        duration = random.uniform(0.2, 1.0)  # Durée aléatoire entre 0.2 et 1.0 secondes
+        sequence.append((note, duration))
 
-finally:
-    # Remet toutes les sorties à 0 pour sécurité
-    for solenoid in solenoids.values():
-        solenoid.value(0)
-    print("Toutes les sorties ont été remises à 0.")
+    return sequence
+
+
+if __name__ == "__main__":
+    # --- Boucle principale ---
+    try:
+        print("Piano automatique en marche. Ctrl+C pour arrêter.")
+        print(full_sequence_random)
+        # while True:
+        #     seq = random.choice(sequences)  # Choisit une séquence au hasard
+        #     play_sequence(seq)
+        #     time.sleep(PAUSE_BETWEEN_SEQUENCES)
+
+    except KeyboardInterrupt:
+        print("\nArrêt par l'utilisateur.")
+
+    finally:
+        # Remet toutes les sorties à 0 pour sécurité
+        for solenoid in solenoids.values():
+            solenoid.value(0)
+        print("Toutes les sorties ont été remises à 0.")
